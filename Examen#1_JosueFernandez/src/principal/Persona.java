@@ -2,10 +2,10 @@ package principal;
 
 import java.util.ArrayList;
 
-public class Persona {
+public abstract class Persona {
     
     //Atributos
-    private int identificacion;
+    private long identificacion;
     private String nombrePersona;
     private int edad;
     private String sexo;
@@ -19,13 +19,13 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(int identificacion, String nombrePersona, int edad) {
+    public Persona(long identificacion, String nombrePersona, int edad) {
         this.identificacion = identificacion;
         this.nombrePersona = nombrePersona;
         this.edad = edad;
     }
 
-    public Persona(int identificacion, String nombrePersona, int edad, String sexo, String estadoCivil, int altura, int peso) {
+    public Persona(long identificacion, String nombrePersona, int edad, String sexo, String estadoCivil, int altura, int peso) {
         this.identificacion = identificacion;
         this.nombrePersona = nombrePersona;
         this.edad = edad;
@@ -36,11 +36,11 @@ public class Persona {
     }
     
     //Getters y setters
-    public int getIdentificacion() {
+    public long getIdentificacion() {
         return identificacion;
     }
 
-    public void setIdentificacion(int identificacion) {
+    public void setIdentificacion(long identificacion) {
         this.identificacion = identificacion;
     }
 
@@ -76,7 +76,7 @@ public class Persona {
         this.estadoCivil = estadoCivil;
     }
 
-    public float getAltura() {
+    public int getAltura() {
         return altura;
     }
 

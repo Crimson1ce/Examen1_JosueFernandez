@@ -2,7 +2,7 @@ package principal;
 
 import java.awt.Color;
 
-public class Articulo {
+public abstract class Articulo {
     private String titulo;
     private Color color;
     private String descripcionArticulo;
