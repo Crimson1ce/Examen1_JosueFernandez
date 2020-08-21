@@ -1,5 +1,6 @@
 package principal;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class Main extends javax.swing.JFrame {
@@ -89,11 +90,27 @@ public class Main extends javax.swing.JFrame {
     }
 
     public boolean entrar(){
-        String password = JOptionPane.showInputDialog(this, "Ingrese la contraseña:", "Verificación.", JOptionPane.ERROR_MESSAGE);
-        return password.equals("clau123");
+        String password = JOptionPane.showInputDialog(this, "Ingrese la contraseña:", "Verificación.", JOptionPane.QUESTION_MESSAGE);
+        boolean flag;
+        if (password.equals("clau123")) {
+            JOptionPane.showMessageDialog(null, "Contraseña correcta.", "Validación de Contraseña.", JOptionPane.INFORMATION_MESSAGE);
+            return true;
+        }
+        JOptionPane.showMessageDialog(null, "Contraseña incorrecta.", "Validación de Contraseña.", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+    
+    public void estadoOperacion(boolean b){
+        if(b){
+            JOptionPane.showMessageDialog(null, "Operación realizada con éxito.", "Estado de Operación", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "La operación no pudo ser realizada.", "Estado de Operación", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    ArrayList<Persona> contactos = new ArrayList();
 }
