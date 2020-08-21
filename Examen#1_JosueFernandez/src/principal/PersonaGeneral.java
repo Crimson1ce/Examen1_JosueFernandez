@@ -9,7 +9,7 @@ public class PersonaGeneral extends Persona{
     public PersonaGeneral() {
     }
 
-    public PersonaGeneral(String ocupacion, String horario, int semanasContratado, float sueldo, int identificacion, String nombrePersona, int edad, String sexo, String estadoCivil, float altura, int peso) {
+    public PersonaGeneral(String ocupacion, String horario, int semanasContratado, float sueldo, int identificacion, String nombrePersona, int edad, String sexo, String estadoCivil, int altura, int peso) {
         super(identificacion, nombrePersona, edad, sexo, estadoCivil, altura, peso);
         this.ocupacion = ocupacion;
         this.horario = horario;

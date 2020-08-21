@@ -10,7 +10,7 @@ public class Persona {
     private int edad;
     private String sexo;
     private String estadoCivil;
-    private float altura;
+    private int altura;
     private int peso;
     private ArrayList<Mensaje> mensajesEnviados = new ArrayList();
     private ArrayList<Mensaje> mensajesRecibidos = new ArrayList();
@@ -25,7 +25,7 @@ public class Persona {
         this.edad = edad;
     }
 
-    public Persona(int identificacion, String nombrePersona, int edad, String sexo, String estadoCivil, float altura, int peso) {
+    public Persona(int identificacion, String nombrePersona, int edad, String sexo, String estadoCivil, int altura, int peso) {
         this.identificacion = identificacion;
         this.nombrePersona = nombrePersona;
         this.edad = edad;
@@ -80,7 +80,7 @@ public class Persona {
         return altura;
     }
 
-    public void setAltura(float altura) {
+    public void setAltura(int altura) {
         this.altura = altura;
     }
 
