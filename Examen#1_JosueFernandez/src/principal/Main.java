@@ -2,6 +2,7 @@ package principal;
 
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,6 +36,9 @@ public class Main extends javax.swing.JFrame {
         art_model.addElement("Figura");
         cb_art.setModel(art_model);
         cb_art.setSelectedIndex(0);
+        
+        jl_edicion.setVisible(false);
+        jl_garantia.setVisible(false);
         
         this.setLocationRelativeTo(null);
     }
@@ -99,9 +103,47 @@ public class Main extends javax.swing.JFrame {
         jl_modificableS = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         cb_art = new javax.swing.JComboBox<>();
+        jb_color = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        tf_titulo = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ta_descripcionArt = new javax.swing.JTextArea();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        tf_editorial = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        ff_tamano = new javax.swing.JFormattedTextField();
+        jLabel16 = new javax.swing.JLabel();
+        s_estado = new javax.swing.JSlider();
+        jl_numeros = new javax.swing.JLabel();
+        jl_estado = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        ff_puntuacion = new javax.swing.JFormattedTextField();
+        cb_registrador = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
+        jl_garantia = new javax.swing.JLabel();
+        jl_edicion = new javax.swing.JLabel();
+        jl_volumen = new javax.swing.JLabel();
+        ff_volumen = new javax.swing.JFormattedTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ta_descripsionComic = new javax.swing.JTextArea();
+        jl_casaElaboracion = new javax.swing.JLabel();
+        tf_casaElaboracion = new javax.swing.JTextField();
+        jl_desc = new javax.swing.JLabel();
+        tf_pais = new javax.swing.JTextField();
+        jl_pais = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        ta_instrucciones = new javax.swing.JTextArea();
+        jl_instrucciones = new javax.swing.JLabel();
+        jb_crearArt = new javax.swing.JButton();
+        jb_modificarArt = new javax.swing.JButton();
+        jb_eliminarArt = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panel.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -134,7 +176,6 @@ public class Main extends javax.swing.JFrame {
 
         rb_masculino.setBackground(new java.awt.Color(153, 153, 255));
         bg_sexo.add(rb_masculino);
-        rb_masculino.setSelected(true);
         rb_masculino.setText("Masculino");
 
         rb_femenino.setBackground(new java.awt.Color(153, 153, 255));
@@ -149,7 +190,6 @@ public class Main extends javax.swing.JFrame {
 
         rb_soltero.setBackground(new java.awt.Color(153, 153, 255));
         bg_estadoCivil.add(rb_soltero);
-        rb_soltero.setSelected(true);
         rb_soltero.setText("Soltero");
 
         rb_casado.setBackground(new java.awt.Color(153, 153, 255));
@@ -192,7 +232,6 @@ public class Main extends javax.swing.JFrame {
 
         rb_planta.setBackground(new java.awt.Color(153, 153, 255));
         bg_cargo.add(rb_planta);
-        rb_planta.setSelected(true);
         rb_planta.setText("Gerente de planta");
 
         jl_cargo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -422,25 +461,184 @@ public class Main extends javax.swing.JFrame {
         jTabbedPane1.addTab("Personas", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(102, 204, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cb_art.setBackground(new java.awt.Color(0, 0, 255));
+        cb_art.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_artItemStateChanged(evt);
+            }
+        });
+        jPanel2.add(cb_art, new org.netbeans.lib.awtextra.AbsoluteConstraints(604, 21, 132, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(517, Short.MAX_VALUE)
-                .addComponent(cb_art, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(132, 132, 132))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(cb_art, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(252, Short.MAX_VALUE))
-        );
+        jb_color.setBackground(new java.awt.Color(255, 0, 0));
+        jb_color.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jb_color.setBorderPainted(false);
+        jb_color.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_colorActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jb_color, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 54, 123, 28));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel10.setText("Color:");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 54, 45, -1));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel11.setText("Tiítulo:");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 23, -1, -1));
+        jPanel2.add(tf_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 21, 125, -1));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel12.setText("Descripción");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 21, -1, 20));
+
+        ta_descripcionArt.setColumns(20);
+        ta_descripcionArt.setRows(5);
+        jScrollPane1.setViewportView(ta_descripcionArt);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 21, 251, 68));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel13.setText("del artículo:");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 47, 86, -1));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel14.setText("Editorial:");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 100, -1, -1));
+        jPanel2.add(tf_editorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(423, 95, 147, -1));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel15.setText("Tamaño:");
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 96, -1, -1));
+
+        ff_tamano.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jPanel2.add(ff_tamano, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 94, 105, -1));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel16.setText("cm");
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 94, -1, -1));
+
+        s_estado.setMaximum(10);
+        s_estado.setMinimum(1);
+        jPanel2.add(s_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 148, -1, -1));
+
+        jl_numeros.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jl_numeros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jl_numeros.setText("1   2   3   4   5   6   7   8   9   10");
+        jPanel2.add(jl_numeros, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 178, 200, -1));
+
+        jl_estado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jl_estado.setText("Estado:");
+        jPanel2.add(jl_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 126, -1, -1));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel19.setText("Puntuación:");
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 131, -1, -1));
+
+        ff_puntuacion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        jPanel2.add(ff_puntuacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(423, 126, 147, -1));
+
+        cb_registrador.setBackground(new java.awt.Color(255, 0, 51));
+        cb_registrador.setModel(cb_personas.getModel());
+        cb_registrador.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_registradorItemStateChanged(evt);
+            }
+        });
+        jPanel2.add(cb_registrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(423, 152, 147, -1));
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel20.setText("Registrado por:");
+        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 157, -1, -1));
+
+        jl_garantia.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jl_garantia.setText("Tiempo de garantía:");
+        jPanel2.add(jl_garantia, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+
+        jl_edicion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jl_edicion.setText("No. de Edición:");
+        jPanel2.add(jl_edicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
+
+        jl_volumen.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jl_volumen.setText("No. de Volumen:");
+        jPanel2.add(jl_volumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
+
+        ff_volumen.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jPanel2.add(ff_volumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 198, 96, -1));
+
+        ta_descripsionComic.setColumns(20);
+        ta_descripsionComic.setRows(5);
+        jScrollPane2.setViewportView(ta_descripsionComic);
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 200, 40));
+
+        jl_casaElaboracion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jl_casaElaboracion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jl_casaElaboracion.setText("Casa de elaboración:");
+        jPanel2.add(jl_casaElaboracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, -1, -1));
+        jPanel2.add(tf_casaElaboracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 130, -1));
+
+        jl_desc.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jl_desc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jl_desc.setText("Descripción:");
+        jPanel2.add(jl_desc, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+        jPanel2.add(tf_pais, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 130, -1));
+
+        jl_pais.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jl_pais.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jl_pais.setText("País donde se realizó:");
+        jPanel2.add(jl_pais, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, -1, -1));
+
+        ta_instrucciones.setColumns(20);
+        ta_instrucciones.setRows(5);
+        jScrollPane3.setViewportView(ta_instrucciones);
+
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 202, 170, 80));
+
+        jl_instrucciones.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jl_instrucciones.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jl_instrucciones.setText("Instrucciones de armado:");
+        jPanel2.add(jl_instrucciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, -1, -1));
+
+        jb_crearArt.setBackground(new java.awt.Color(255, 153, 51));
+        jb_crearArt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jb_crearArt.setText("CREAR");
+        jb_crearArt.setBorderPainted(false);
+        jb_crearArt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_crearArtActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jb_crearArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 70, 100, -1));
+
+        jb_modificarArt.setBackground(new java.awt.Color(255, 153, 0));
+        jb_modificarArt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jb_modificarArt.setText("MODIFICAR");
+        jb_modificarArt.setBorderPainted(false);
+        jb_modificarArt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_modificarArtActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jb_modificarArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 190, -1, -1));
+
+        jb_eliminarArt.setBackground(new java.awt.Color(255, 153, 0));
+        jb_eliminarArt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jb_eliminarArt.setText("ELIMINAR");
+        jb_eliminarArt.setBorderPainted(false);
+        jb_eliminarArt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_eliminarArtActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jb_eliminarArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 220, 100, -1));
 
         jTabbedPane1.addTab("Artículos", jPanel2);
 
@@ -472,16 +670,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -754,6 +943,89 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cb_personasItemStateChanged
 
+    private void jb_colorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_colorActionPerformed
+
+        jb_color.setBackground(
+            JColorChooser.showDialog(this, "Seleccione el color del carro.", jb_color.getBackground())
+        );
+
+    }//GEN-LAST:event_jb_colorActionPerformed
+
+    private void cb_registradorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_registradorItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_registradorItemStateChanged
+
+    private void jb_crearArtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_crearArtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_crearArtActionPerformed
+
+    private void jb_modificarArtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_modificarArtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_modificarArtActionPerformed
+
+    private void jb_eliminarArtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_eliminarArtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_eliminarArtActionPerformed
+
+    private void cb_artItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_artItemStateChanged
+        if (evt.getStateChange() == 2) {
+            if (cb_tipo.getSelectedIndex() == 0) {
+                
+                jl_estado.setVisible(true);
+                s_estado.setVisible(true);
+                jl_desc.setVisible(true);
+                ta_descripsionComic.setVisible(true);
+                jl_volumen.setVisible(true);
+                
+                jl_edicion.setVisible(false);
+                jl_casaElaboracion.setVisible(false);
+                tf_casaElaboracion.setVisible(false);
+                jl_pais.setVisible(false);
+                tf_pais.setVisible(false);
+                
+                jl_instrucciones.setVisible(false);
+                ta_instrucciones.setVisible(false);
+                jl_tiempo.setVisible(false);
+                
+            } else if (cb_tipo.getSelectedIndex() == 1) {
+                jl_estado.setVisible(false);
+                s_estado.setVisible(false);
+                jl_desc.setVisible(false);
+                ta_descripsionComic.setVisible(false);
+                jl_volumen.setVisible(false);
+                
+                jl_edicion.setVisible(true);
+                jl_casaElaboracion.setVisible(true);
+                tf_casaElaboracion.setVisible(true);
+                jl_pais.setVisible(true);
+                tf_pais.setVisible(true);
+                
+                jl_instrucciones.setVisible(false);
+                ta_instrucciones.setVisible(false);
+                jl_tiempo.setVisible(false);
+                
+            } else {
+                
+                jl_estado.setVisible(false);
+                s_estado.setVisible(false);
+                jl_desc.setVisible(false);
+                ta_descripsionComic.setVisible(false);
+                jl_volumen.setVisible(false);
+                
+                jl_edicion.setVisible(false);
+                jl_casaElaboracion.setVisible(false);
+                tf_casaElaboracion.setVisible(false);
+                jl_pais.setVisible(false);
+                tf_pais.setVisible(false);
+                
+                jl_instrucciones.setVisible(true);
+                ta_instrucciones.setVisible(true);
+                jl_tiempo.setVisible(true);
+                
+            }
+        }
+    }//GEN-LAST:event_cb_artItemStateChanged
+
     private void mostrarDatosPersona(Persona p){
         
         String id = Long.toString(p.getIdentificacion());
@@ -906,15 +1178,28 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.ButtonGroup bg_sexo;
     private javax.swing.JComboBox<String> cb_art;
     private javax.swing.JComboBox<String> cb_personas;
+    private javax.swing.JComboBox<String> cb_registrador;
     private javax.swing.JComboBox<String> cb_tipo;
     private javax.swing.JFormattedTextField ff_altura;
     private javax.swing.JFormattedTextField ff_edad;
     private javax.swing.JFormattedTextField ff_identificacion;
     private javax.swing.JFormattedTextField ff_peso;
+    private javax.swing.JFormattedTextField ff_puntuacion;
     private javax.swing.JFormattedTextField ff_sueldo;
+    private javax.swing.JFormattedTextField ff_tamano;
     private javax.swing.JFormattedTextField ff_tiempo;
+    private javax.swing.JFormattedTextField ff_volumen;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -925,20 +1210,36 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JButton jb_color;
     private javax.swing.JButton jb_crear;
+    private javax.swing.JButton jb_crearArt;
     private javax.swing.JButton jb_eliminar;
+    private javax.swing.JButton jb_eliminarArt;
     private javax.swing.JButton jb_modificar;
+    private javax.swing.JButton jb_modificarArt;
     private javax.swing.JLabel jl_cargo;
+    private javax.swing.JLabel jl_casaElaboracion;
     private javax.swing.JLabel jl_contra;
+    private javax.swing.JLabel jl_desc;
+    private javax.swing.JLabel jl_edicion;
+    private javax.swing.JLabel jl_estado;
+    private javax.swing.JLabel jl_garantia;
     private javax.swing.JLabel jl_horario;
+    private javax.swing.JLabel jl_instrucciones;
     private javax.swing.JLabel jl_modificableS;
     private javax.swing.JLabel jl_modificableU;
+    private javax.swing.JLabel jl_numeros;
     private javax.swing.JLabel jl_ocupacion;
+    private javax.swing.JLabel jl_pais;
     private javax.swing.JLabel jl_semanas;
     private javax.swing.JLabel jl_sueldo;
     private javax.swing.JLabel jl_tiempo;
     private javax.swing.JLabel jl_usuario;
+    private javax.swing.JLabel jl_volumen;
     private javax.swing.JPanel panel;
     private javax.swing.JRadioButton rb_casado;
     private javax.swing.JRadioButton rb_divorciado;
@@ -948,10 +1249,18 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JRadioButton rb_soltero;
     private javax.swing.JRadioButton rb_sucursal;
     private javax.swing.JRadioButton rb_viudo;
+    private javax.swing.JSlider s_estado;
+    private javax.swing.JTextArea ta_descripcionArt;
+    private javax.swing.JTextArea ta_descripsionComic;
+    private javax.swing.JTextArea ta_instrucciones;
+    private javax.swing.JTextField tf_casaElaboracion;
     private javax.swing.JTextField tf_contra;
+    private javax.swing.JTextField tf_editorial;
     private javax.swing.JTextField tf_horario;
     private javax.swing.JTextField tf_nombre;
     private javax.swing.JTextField tf_ocupacion;
+    private javax.swing.JTextField tf_pais;
+    private javax.swing.JTextField tf_titulo;
     private javax.swing.JTextField tf_usuario;
     // End of variables declaration//GEN-END:variables
 
