@@ -141,6 +141,8 @@ public class Main extends javax.swing.JFrame {
         jb_modificarArt = new javax.swing.JButton();
         jb_eliminarArt = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -642,18 +644,44 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Artículos", jPanel2);
 
+        jPanel3.setBackground(new java.awt.Color(255, 153, 51));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Rol"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(jTable1);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 763, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 295, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(202, 202, 202))
         );
 
-        jTabbedPane1.addTab("tab3", jPanel3);
+        jTabbedPane1.addTab("Listado", jPanel3);
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -716,6 +744,16 @@ public class Main extends javax.swing.JFrame {
                     DefaultComboBoxModel m = (DefaultComboBoxModel) cb_personas.getModel();
                     m.addElement(p);
                     
+                    DefaultTableModel t = (DefaultTableModel) jTable1.getModel();
+                    
+                    String[] s = new String[]{
+                      nombrePersona,
+                        "Gerente"
+                    };
+                    t.addRow(s);
+                    jTable1.setModel(t);
+                    
+                    
                     estadoOperacion(true);
                 } else if (cb_tipo.getSelectedIndex() == 1) {
                     String ocupacion, horario;
@@ -731,6 +769,16 @@ public class Main extends javax.swing.JFrame {
                     contactos.add(p);
                     DefaultComboBoxModel m = (DefaultComboBoxModel) cb_personas.getModel();
                     m.addElement(p);
+                    
+                    DefaultTableModel t = (DefaultTableModel) jTable1.getModel();
+                    
+                    String[] s = new String[]{
+                      nombrePersona,
+                        "Persona General"
+                    };
+                    t.addRow(s);
+                    jTable1.setModel(t);
+                    
                     
                     estadoOperacion(true);
                 }
@@ -1134,13 +1182,17 @@ public class Main extends javax.swing.JFrame {
     }
     
     public boolean entrar() {
-        String password = JOptionPane.showInputDialog(this, "Ingrese la contraseña:", "Verificación.", JOptionPane.QUESTION_MESSAGE);
-        boolean flag;
-        if (password.equals("clau123")) {
-            JOptionPane.showMessageDialog(null, "Contraseña correcta.", "Validación de Contraseña.", JOptionPane.INFORMATION_MESSAGE);
-            return true;
+        try{
+            String password = JOptionPane.showInputDialog(this, "Ingrese la contraseña:", "Verificación.", JOptionPane.QUESTION_MESSAGE);
+            boolean flag;
+            if (password.equals("clau123")) {
+                JOptionPane.showMessageDialog(null, "Contraseña correcta.", "Validación de Contraseña.", JOptionPane.INFORMATION_MESSAGE);
+                return true;
+            }
+            JOptionPane.showMessageDialog(null, "Contraseña incorrecta.", "Validación de Contraseña.", JOptionPane.ERROR_MESSAGE);
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        JOptionPane.showMessageDialog(null, "Contraseña incorrecta.", "Validación de Contraseña.", JOptionPane.ERROR_MESSAGE);
         return false;
     }
     
@@ -1213,7 +1265,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JButton jb_color;
     private javax.swing.JButton jb_crear;
     private javax.swing.JButton jb_crearArt;
