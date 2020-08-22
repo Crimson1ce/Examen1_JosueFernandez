@@ -12,9 +12,9 @@ public class Comic extends Articulo{
 
     public Comic(int numeroVolumen, String descripcionComic, int estadoCalidad, String titulo, Color color, String descripcionArticulo, String editorial, int tamaño, float puntuacion, Persona personaRegistro) {
         super(titulo, color, descripcionArticulo, editorial, tamaño, puntuacion, personaRegistro);
-        this.numeroVolumen = numeroVolumen;
+        setNumeroVolumen(numeroVolumen);
         this.descripcionComic = descripcionComic;
-        this.estadoCalidad = estadoCalidad;
+        setEstadoCalidad(estadoCalidad);
     }
 
     public int getEstadoCalidad() {
@@ -22,7 +22,9 @@ public class Comic extends Articulo{
     }
 
     public void setEstadoCalidad(int estadoCalidad) {
-        this.estadoCalidad = estadoCalidad;
+        if (estadoCalidad>0 && estadoCalidad<11) {
+            this.estadoCalidad = estadoCalidad;
+        }
     }
 
     public int getNumeroVolumen() {
@@ -30,7 +32,10 @@ public class Comic extends Articulo{
     }
 
     public void setNumeroVolumen(int numeroVolumen) {
-        this.numeroVolumen = numeroVolumen;
+        if (numeroVolumen>0) {
+            this.numeroVolumen = numeroVolumen;
+        }
+        
     }
 
     public String getDescripcionComic() {

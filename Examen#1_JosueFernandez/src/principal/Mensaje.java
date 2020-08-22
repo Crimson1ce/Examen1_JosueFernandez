@@ -6,6 +6,15 @@ public class Mensaje {
     private Persona receptor;
     private String mensaje;
 
+    public Mensaje() {
+    }
+
+    public Mensaje(Persona emisor, Persona receptor, String mensaje) {
+        this.emisor = emisor;
+        this.receptor = receptor;
+        this.mensaje = mensaje;
+    }
+
     public Persona getEmisor() {
         return emisor;
     }

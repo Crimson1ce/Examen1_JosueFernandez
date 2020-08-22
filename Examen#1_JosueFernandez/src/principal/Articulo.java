@@ -19,8 +19,8 @@ public abstract class Articulo {
         this.color = color;
         this.descripcionArticulo = descripcionArticulo;
         this.editorial = editorial;
-        this.tamaño = tamaño;
-        this.puntuacion = puntuacion;
+        setTamaño(tamaño);
+        setPuntuacion(puntuacion);
         this.personaRegistro = personaRegistro;
     }
 
@@ -61,7 +61,10 @@ public abstract class Articulo {
     }
 
     public void setTamaño(int tamaño) {
-        this.tamaño = tamaño;
+        if (tamaño>0) {
+            this.tamaño = tamaño;
+        }
+        
     }
 
     public float getPuntuacion() {
@@ -69,7 +72,10 @@ public abstract class Articulo {
     }
 
     public void setPuntuacion(float puntuacion) {
-        this.puntuacion = puntuacion;
+        if (puntuacion>=0.0 && puntuacion<=100.0) {
+            this.puntuacion = puntuacion;
+        }
+        
     }
 
     public Persona getPersonaRegistro() {

@@ -14,7 +14,7 @@ public class Figura extends Articulo{
         super(titulo, color, descripcionArticulo, editorial, tamaño, puntuacion, personaRegistro);
         this.descripcionFigura = descripcionFigura;
         this.instruccionesDeArmado = instruccionesDeArmado;
-        this.tiempoDeGarantia = tiempoDeGarantia;
+        setTiempoDeGarantia(tiempoDeGarantia);
     }
 
     public int getTiempoDeGarantia() {
@@ -22,7 +22,10 @@ public class Figura extends Articulo{
     }
 
     public void setTiempoDeGarantia(int tiempoDeGarantia) {
-        this.tiempoDeGarantia = tiempoDeGarantia;
+        if (tiempoDeGarantia>=0) {
+            this.tiempoDeGarantia = tiempoDeGarantia;
+        }
+        
     }
 
     public String getDescripcionFigura() {
@@ -43,7 +46,7 @@ public class Figura extends Articulo{
 
     @Override
     public String toString() {
-        return "Figura\n" + "Descripción de la figura=" + descripcionFigura + ", Instrucciones de armado=" + instruccionesDeArmado + ", Tiempo de garantía=" + tiempoDeGarantia + '}';
+        return "Figura\n" + "Descripción de la figura=" + descripcionFigura + ", Instrucciones de armado=" + instruccionesDeArmado + ", Tiempo de garantía=" + tiempoDeGarantia;
     }
     
 }

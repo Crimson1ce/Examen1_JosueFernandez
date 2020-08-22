@@ -12,7 +12,7 @@ public class Juego extends Articulo{
 
     public Juego(int numeroEdicion, String casaDeElaboracion, String paisDondeSeHizo, String titulo, Color color, String descripcionArticulo, String editorial, int tamaño, float puntuacion, Persona personaRegistro) {
         super(titulo, color, descripcionArticulo, editorial, tamaño, puntuacion, personaRegistro);
-        this.numeroEdicion = numeroEdicion;
+        setNumeroEdicion(numeroEdicion);
         this.casaDeElaboracion = casaDeElaboracion;
         this.paisDondeSeHizo = paisDondeSeHizo;
     }
@@ -30,7 +30,10 @@ public class Juego extends Articulo{
     }
 
     public void setNumeroEdicion(int numeroEdicion) {
-        this.numeroEdicion = numeroEdicion;
+        if (numeroEdicion>0) {
+            this.numeroEdicion = numeroEdicion;
+        }
+        
     }
 
     public String getCasaDeElaboracion() {

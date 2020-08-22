@@ -13,8 +13,8 @@ public class PersonaGeneral extends Persona{
         super(identificacion, nombrePersona, edad, sexo, estadoCivil, altura, peso);
         this.ocupacion = ocupacion;
         this.horario = horario;
-        this.semanasContratado = semanasContratado;
-        this.sueldo = sueldo;
+        setSemanasContratado(semanasContratado);
+        setSueldo(sueldo);
     }
 
     public String getOcupacion() {
@@ -38,7 +38,10 @@ public class PersonaGeneral extends Persona{
     }
 
     public void setSemanasContratado(int semanasContratado) {
-        this.semanasContratado = semanasContratado;
+        if (semanasContratado>=0) {
+            this.semanasContratado = semanasContratado;
+        }
+        
     }
 
     public float getSueldo() {
@@ -46,7 +49,10 @@ public class PersonaGeneral extends Persona{
     }
 
     public void setSueldo(float sueldo) {
-        this.sueldo = sueldo;
+        if (sueldo>=0.0) {
+            this.sueldo = sueldo;
+        }
+        
     }
 
     @Override

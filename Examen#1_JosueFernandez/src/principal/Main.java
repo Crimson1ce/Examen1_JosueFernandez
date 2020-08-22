@@ -29,8 +29,14 @@ public class Main extends javax.swing.JFrame {
         rb_planta.setVisible(false);
         rb_sucursal.setVisible(false);
         
-        this.setLocationRelativeTo(null);
+        DefaultComboBoxModel art_model = (DefaultComboBoxModel) cb_art.getModel();
+        art_model.addElement("Comic");
+        art_model.addElement("Juego");
+        art_model.addElement("Figura");
+        cb_art.setModel(art_model);
+        cb_art.setSelectedIndex(0);
         
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -92,6 +98,7 @@ public class Main extends javax.swing.JFrame {
         jl_modificableU = new javax.swing.JLabel();
         jl_modificableS = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        cb_art = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -414,18 +421,28 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Personas", jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(102, 204, 255));
+
+        cb_art.setBackground(new java.awt.Color(0, 0, 255));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 763, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(517, Short.MAX_VALUE)
+                .addComponent(cb_art, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(132, 132, 132))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 295, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(cb_art, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(252, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab2", jPanel2);
+        jTabbedPane1.addTab("Artículos", jPanel2);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -532,6 +549,7 @@ public class Main extends javax.swing.JFrame {
             } catch (Exception e) {
                 estadoOperacion(false);
             }
+            limpiarCampos();
         }
     }//GEN-LAST:event_jb_crearActionPerformed
 
@@ -623,19 +641,39 @@ public class Main extends javax.swing.JFrame {
                 }
                 
                 if (contactos.get(cb_personas.getSelectedIndex() - 1) instanceof Gerente) {                    
-                    String usuario = JOptionPane.showInputDialog("Ingrese un nuevo usuario:");
-                    ((Gerente) cb_personas.getSelectedItem()).setUsuario(usuario);
+                    String usuario = tf_usuario.getText();
+                    Gerente g = ((Gerente) cb_personas.getSelectedItem());
+                    g.setUsuario(usuario);
+                    
+                    g.setNombrePersona(nombrePersona);
+                    g.setAltura(altura);
+                    g.setEstadoCivil(estadoCivil);
+                    g.setIdentificacion(identificacion);
+                    g.setPeso(peso);
+                    g.setSexo(sexo);
+                    g.setEdad(edad);
                     
                     estadoOperacion(true);
                 } else {
-                    Float sueldo = Float.parseFloat(JOptionPane.showInputDialog("Ingrese un nuevo sueldo:"));
-                    ((PersonaGeneral) cb_personas.getSelectedItem()).setSueldo(sueldo);
+                    Float sueldo = Float.parseFloat(ff_sueldo.getText());
+                    
+                    PersonaGeneral g = ((PersonaGeneral) cb_personas.getSelectedItem());
+                    g.setSueldo(sueldo);
+                    
+                    g.setNombrePersona(nombrePersona);
+                    g.setAltura(altura);
+                    g.setEstadoCivil(estadoCivil);
+                    g.setIdentificacion(identificacion);
+                    g.setPeso(peso);
+                    g.setSexo(sexo);
+                    g.setEdad(edad);
                     
                     estadoOperacion(true);
                 }                
             } catch (Exception e) {
                 estadoOperacion(false);
             }
+            limpiarCampos();
         }
     }//GEN-LAST:event_jb_modificarActionPerformed
 
@@ -645,6 +683,7 @@ public class Main extends javax.swing.JFrame {
             if(cb_personas.getSelectedItem() instanceof Gerente){
                 
                 Gerente g = (Gerente) cb_personas.getSelectedItem();
+                mostrarDatosPersona(g);
                 
                 //Set not visible 
                 jl_ocupacion.setVisible(false);
@@ -678,6 +717,39 @@ public class Main extends javax.swing.JFrame {
                     rb_planta.setSelected(false);
                     rb_sucursal.setSelected(true);
                 }
+            } else {
+                PersonaGeneral p = (PersonaGeneral) cb_personas.getSelectedItem();
+                mostrarDatosPersona(p);
+                
+                //Set not visible 
+                jl_usuario.setVisible(false);
+                jl_cargo.setVisible(false);
+                jl_contra.setVisible(false);
+                jl_modificableU.setVisible(false);
+                tf_usuario.setVisible(false);
+                tf_contra.setVisible(false);
+                rb_planta.setVisible(false);
+                rb_sucursal.setVisible(false);
+                
+                jl_ocupacion.setVisible(true);
+                jl_horario.setVisible(true);
+                jl_tiempo.setVisible(true);
+                jl_semanas.setVisible(true);
+                jl_sueldo.setVisible(true);
+                jl_modificableS.setVisible(true);
+                
+                
+                tf_ocupacion.setVisible(true);
+                tf_ocupacion.setText(p.getOcupacion());
+                
+                tf_horario.setVisible(true);
+                tf_horario.setText(p.getHorario());
+                
+                ff_tiempo.setVisible(true);
+                ff_tiempo.setText(p.getSemanasContratado() + "");
+                
+                ff_sueldo.setVisible(true);
+                ff_sueldo.setText(p.getSueldo() + "");
             }
         }
     }//GEN-LAST:event_cb_personasItemStateChanged
@@ -685,7 +757,7 @@ public class Main extends javax.swing.JFrame {
     private void mostrarDatosPersona(Persona p){
         
         String id = Long.toString(p.getIdentificacion());
-        for(int i=13; i>id.length();i++){
+        for(int i=13; i>id.length();i--){
             id = "0" + id;
         }
         try {       
@@ -808,10 +880,31 @@ public class Main extends javax.swing.JFrame {
         }
     }
 
+    public void limpiarCampos(){
+        ff_identificacion.setText("");
+        tf_nombre.setText(""); 
+        ff_edad.setText("");
+        ff_altura.setText("");
+        ff_peso.setText("");
+        rb_masculino.setSelected(true);
+        rb_soltero.setSelected(true);
+        
+        tf_ocupacion.setText("");
+        tf_horario.setText("");
+        ff_tiempo.setText("");
+        ff_sueldo.setText("");
+        
+        tf_usuario.setText("");
+        tf_contra.setText("");
+        rb_planta.setSelected(true);
+        
+   }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bg_cargo;
     private javax.swing.ButtonGroup bg_estadoCivil;
     private javax.swing.ButtonGroup bg_sexo;
+    private javax.swing.JComboBox<String> cb_art;
     private javax.swing.JComboBox<String> cb_personas;
     private javax.swing.JComboBox<String> cb_tipo;
     private javax.swing.JFormattedTextField ff_altura;

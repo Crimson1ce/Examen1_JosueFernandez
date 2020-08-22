@@ -20,19 +20,19 @@ public abstract class Persona {
     }
 
     public Persona(long identificacion, String nombrePersona, int edad) {
-        this.identificacion = identificacion;
+        setIdentificacion(identificacion);
         this.nombrePersona = nombrePersona;
-        this.edad = edad;
+        setEdad(edad);
     }
 
     public Persona(long identificacion, String nombrePersona, int edad, String sexo, String estadoCivil, int altura, int peso) {
-        this.identificacion = identificacion;
+        setIdentificacion(identificacion);
         this.nombrePersona = nombrePersona;
-        this.edad = edad;
+        setEdad(edad);
         this.sexo = sexo;
         this.estadoCivil = estadoCivil;
-        this.altura = altura;
-        this.peso = peso;
+        setAltura(altura);
+        setPeso(peso);
     }
     
     //Getters y setters
@@ -41,7 +41,10 @@ public abstract class Persona {
     }
 
     public void setIdentificacion(long identificacion) {
-        this.identificacion = identificacion;
+        if (identificacion>0) {
+            this.identificacion = identificacion;
+        }
+        
     }
 
     public String getNombrePersona() {
@@ -57,7 +60,10 @@ public abstract class Persona {
     }
 
     public void setEdad(int edad) {
-        this.edad = edad;
+        if (edad>16 && edad<=130) {
+            this.edad = edad;
+        }
+        
     }
 
     public String getSexo() {
@@ -81,7 +87,10 @@ public abstract class Persona {
     }
 
     public void setAltura(int altura) {
-        this.altura = altura;
+        if (altura>0) {
+            this.altura = altura;
+        }
+        
     }
 
     public int getPeso() {
@@ -89,7 +98,10 @@ public abstract class Persona {
     }
 
     public void setPeso(int peso) {
-        this.peso = peso;
+        if (peso>0) {
+            this.peso = peso;
+        }
+        
     }
 
     public ArrayList<Mensaje> getMensajesEnviados() {
