@@ -143,11 +143,22 @@ public class Main extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        text = new javax.swing.JTextArea();
+        cb_emisor = new javax.swing.JComboBox<>();
+        cb_receptor = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panel.setBackground(new java.awt.Color(204, 204, 255));
+
+        jTabbedPane1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTabbedPane1FocusGained(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -163,7 +174,6 @@ public class Main extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ff_identificacion.setText("    -    -     ");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Identificación:");
@@ -683,6 +693,65 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Listado", jPanel3);
 
+        text.setColumns(20);
+        text.setRows(5);
+        jScrollPane5.setViewportView(text);
+
+        cb_emisor.setBackground(new java.awt.Color(255, 0, 51));
+        cb_emisor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        cb_emisor.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_emisorItemStateChanged(evt);
+            }
+        });
+
+        cb_receptor.setBackground(new java.awt.Color(255, 0, 51));
+        cb_receptor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        cb_receptor.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_receptorItemStateChanged(evt);
+            }
+        });
+
+        jButton1.setText("Enviar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(cb_emisor, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addComponent(cb_receptor, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(324, 324, 324)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(102, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cb_receptor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_emisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addComponent(jButton1)
+                .addGap(39, 39, 39))
+        );
+
+        jTabbedPane1.addTab("tab4", jPanel4);
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
@@ -698,7 +767,16 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        getContentPane().add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -746,12 +824,6 @@ public class Main extends javax.swing.JFrame {
                     
                     DefaultTableModel t = (DefaultTableModel) jTable1.getModel();
                     
-                    String[] s = new String[]{
-                      nombrePersona,
-                        "Gerente"
-                    };
-                    t.addRow(s);
-                    jTable1.setModel(t);
                     
                     
                     estadoOperacion(true);
@@ -770,14 +842,6 @@ public class Main extends javax.swing.JFrame {
                     DefaultComboBoxModel m = (DefaultComboBoxModel) cb_personas.getModel();
                     m.addElement(p);
                     
-                    DefaultTableModel t = (DefaultTableModel) jTable1.getModel();
-                    
-                    String[] s = new String[]{
-                      nombrePersona,
-                        "Persona General"
-                    };
-                    t.addRow(s);
-                    jTable1.setModel(t);
                     
                     
                     estadoOperacion(true);
@@ -840,10 +904,15 @@ public class Main extends javax.swing.JFrame {
 
     private void jb_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_eliminarActionPerformed
         if (entrar()) {
-            if (cb_personas.getSelectedIndex() > 0) {
-                contactos.remove(cb_personas.getSelectedIndex() - 1);
-                DefaultComboBoxModel m = (DefaultComboBoxModel) cb_personas.getModel();
-                m.removeElementAt(cb_personas.getSelectedIndex());
+            try{
+                if (cb_personas.getSelectedIndex() > 0) {
+                    contactos.remove(cb_personas.getSelectedIndex() - 1);
+                    DefaultComboBoxModel m = (DefaultComboBoxModel) cb_personas.getModel();
+                    m.removeElementAt(cb_personas.getSelectedIndex());
+                    estadoOperacion(true);
+                }
+            } catch(Exception e){
+                estadoOperacion(false);        
             }
         }
         
@@ -1074,6 +1143,48 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cb_artItemStateChanged
 
+    private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
+        DefaultTableModel t = (DefaultTableModel) jTable1.getModel();
+        
+        for(Persona p : contactos){
+            
+            String s = (p instanceof Gerente) ? "Gerente" : "Persona General";
+                    
+            String[] so = new String[]{
+                p.getNombrePersona(),
+                s
+            };
+            t.addRow(so);
+            jTable1.setModel(t);
+            
+        }
+    }//GEN-LAST:event_jTabbedPane1FocusGained
+
+    private void cb_emisorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_emisorItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_emisorItemStateChanged
+
+    private void cb_receptorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_receptorItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_receptorItemStateChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(entrar())
+        {
+            try{
+                
+                Mensaje m = new Mensaje((Persona)cb_emisor.getSelectedItem(), (Persona)cb_receptor.getSelectedItem(), text.getText());
+                
+                ((Persona)cb_emisor.getSelectedItem()).getMensajesEnviados().add(m);
+                ((Persona)cb_receptor.getSelectedItem()).getMensajesRecibidos().add(m);
+                
+                estadoOperacion(true);
+            }catch(Exception e){
+                estadoOperacion(false);
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void mostrarDatosPersona(Persona p){
         
         String id = Long.toString(p.getIdentificacion());
@@ -1229,7 +1340,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.ButtonGroup bg_estadoCivil;
     private javax.swing.ButtonGroup bg_sexo;
     private javax.swing.JComboBox<String> cb_art;
+    private javax.swing.JComboBox<String> cb_emisor;
     private javax.swing.JComboBox<String> cb_personas;
+    private javax.swing.JComboBox<String> cb_receptor;
     private javax.swing.JComboBox<String> cb_registrador;
     private javax.swing.JComboBox<String> cb_tipo;
     private javax.swing.JFormattedTextField ff_altura;
@@ -1241,6 +1354,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField ff_tamano;
     private javax.swing.JFormattedTextField ff_tiempo;
     private javax.swing.JFormattedTextField ff_volumen;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1262,10 +1376,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton jb_color;
@@ -1307,6 +1423,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextArea ta_descripcionArt;
     private javax.swing.JTextArea ta_descripsionComic;
     private javax.swing.JTextArea ta_instrucciones;
+    private javax.swing.JTextArea text;
     private javax.swing.JTextField tf_casaElaboracion;
     private javax.swing.JTextField tf_contra;
     private javax.swing.JTextField tf_editorial;
